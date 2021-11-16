@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card-body">
+                <h3>{{tituloVentana}}</h3>
+                <span *ngIf="submitted && createObra.invalid" style="color: crimson;">TODOS LOS CAMPOS SON
+                    OBLIGATORIOS</span>
+                <form class="mt-4" [formGroup]="createObra" (ngSubmit)="agregarEditarObra()">
+                    <div class="row">
+                        <input type="text" class="form-control mt-3" formControlName="titulo" placeholder="TITULO" pInputText />
+                    </div>
+                    <div class="row">
+                        <input type="text" class="form-control mt-3" formControlName="autor" placeholder="AUTOR" pInputText />
+                    </div>
+                    <div class="row">
+                        <input type="number" class="form-control mt-3" formControlName="year" placeholder="AÑO" pInputText />
+                    </div>
+                    <div class="row">
+                        <input type="text" class="form-control mt-3" formControlName="descripcion" placeholder="DESCRIPCION" pInputText />
+                    </div>
+                    <div class="row">
+                        <input type="file" accept=".png, .jpg, .jpeg" (change)="cargarImagen($event)">
+                    </div>
+                    <div class="mt-3">
+                        <button style="float: left;" pButton type="button" label="VOLVER" [routerLink]="['/list-galeria']"
+                        routerLinkActive="router-link-active" ></button>
+                        <button pButton type="submit" label="AGREGAR" style="float: right;"></button>                     
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

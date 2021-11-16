@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="card">
+        <span class="h3">Listado de obras</span>
+        <button pButton type="button" label="Agregar" style="float: right;" [routerLink]="['/create-obra']" routerLinkActive="router-link-active" ></button>
+        <h5 style="margin-top: 30px;" *ngIf="obras.length == 0">NO HAY OBRAS QUE MOSTRAR</h5>
+        <p-table #dt [value]="obras"  *ngIf="obras.length > 0"  [rows]="10" [paginator]="true"
+            [globalFilterFields]="['titulo','autor','year','descripcion']" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>TITULO</th>
+                    <th>AUTOR</th>
+                    <th>AÑO DE CREACION</th>
+                    <th>DESCRIPCION</th>
+                    <th>IMAGEN</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-obra>
+                <!---ng-template pTemplate="body" let-book>-->
+                <tr>
+                    <td>{{obra.titulo}}</td>
+                    <td>{{obra.autor}}</td>
+                    <td>{{obra.year}}</td>
+                    <td>{{obra.descripcion}}</td>
+                    <td><img [src]="obra.img"  width="100" class="p-shadow-4" /></td>
+                    <td>
+                        <i class="fas fa-edit fa-lg text-info mr-2" style="float: left;"
+                            [routerLink]="['/edit-obra/', obra.id]" routerLinkActive="router-link-active"></i>
+                        <i (click)="eliminarObra(obra.id)" class="fas fa-trash fa-lg text-danger"
+                            style="float: right;"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
